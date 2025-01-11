@@ -85,7 +85,7 @@ class TaskScheduler:
             
             while queue:
                 size = len(queue)
-                for i in range(0, 2):
+                for i in range(0, max_concurrency):
                     (key, val) = queue.popleft()
                     time_to_execute = task_time[key]
                     task_to_execute.append([key, time_to_execute])
