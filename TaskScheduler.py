@@ -76,7 +76,7 @@ class TaskScheduler:
                 indegree[key] = len(value[0])
 
             for key, val in indegree.items():
-                if val == 0 and len(queue)<=2:
+                if val == 0 and len(queue)<=max_concurrency:
                     queue.append((key, val))
             
             task_to_execute = []
@@ -125,7 +125,6 @@ all_tasks.append(task4.combine_all_tasks())
 
 scheduler = TaskScheduler()
 asyncio.run(scheduler.execute_tasks(all_tasks,2))
-
 
 
 
