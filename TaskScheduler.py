@@ -50,6 +50,7 @@ class TaskScheduler:
             time.sleep(execution_time)
         except Exception as e:
             print('Error while running task in async way, please find the erorr: {}'.format(e))    
+
     async def execute_tasks(self, all_tasks, max_concurrency = 2):
 
         try:
@@ -86,7 +87,6 @@ class TaskScheduler:
                 size = len(queue)
                 for i in range(0, 2):
                     (key, val) = queue.popleft()
-
                     time_to_execute = task_time[key]
                     task_to_execute.append([key, time_to_execute])
                     await self.run(task_to_execute)
@@ -97,9 +97,10 @@ class TaskScheduler:
                     for task, dependency in graph.items():
                         search = dependency[0]
                         if key in search:
-                            indegree[key] = indegree[key] - 1
-                            if indegree[key] == 0:
-                               queue.append((key, indegree[key]))  
+
+                            indegree[task] = indegree[task] - 1
+                            if indegree[task] == 0:
+                               queue.append((task, indegree[key]))  
             
             if execute == len(all_tasks):
                 print('All Task completed successfully')
@@ -125,13 +126,3 @@ all_tasks.append(task4.combine_all_tasks())
 
 scheduler = TaskScheduler()
 asyncio.run(scheduler.execute_tasks(all_tasks,2))
-
-
-
-
-
-
-    
-    
-
-
