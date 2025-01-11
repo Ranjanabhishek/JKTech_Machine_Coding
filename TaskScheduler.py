@@ -111,7 +111,7 @@ class TaskScheduler:
 
 
 all_tasks = []
-
+max_concurrency = 2
 task1 = Task('1', '2', [])
 all_tasks.append(task1.combine_all_tasks())
 
@@ -125,4 +125,4 @@ task4 = Task('4', '4', [2,3])
 all_tasks.append(task4.combine_all_tasks())
 
 scheduler = TaskScheduler()
-asyncio.run(scheduler.execute_tasks(all_tasks,2))
+asyncio.run(scheduler.execute_tasks(all_tasks, max_concurrency))
