@@ -91,6 +91,7 @@ class TaskScheduler:
                     task_to_execute.append([key, time_to_execute])
                     await self.run(task_to_execute)
                     execute+=1
+                    print('Task : {} Completed'.format(key))
                     task_to_execute=[]
 
                     for task, dependency in graph.items():
