@@ -20,3 +20,12 @@ Working of Task Scheduler:
                As we know in python mutlithreaing is not supported due GIL (Global interpreter lock) so to avoid
                this I have async/await and it will run in a single thraeded environment and it will wait other task 
                to complete by doing this way we can achieve concurrency.
+
+
+output while running the code:
+PS C:\Users\JKT\Desktop\JKTech> python .\TaskScheduler.py
+Task: 1: started
+Task : 1 Completed
+Task: 3: started
+Task : 3 Completed
+Task are getting executed please wait
